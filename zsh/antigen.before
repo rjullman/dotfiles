@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# install vundle
+if ! [ -d  "$HOME/.zsh/antigen" ]; then
+  git clone https://github.com/zsh-users/antigen.git $HOME/.zsh/antigen > /dev/null 2>&1
+fi

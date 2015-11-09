@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Update brew
+if ! brew update > /tmp/brew-update-log; then
+  fail "homebrew update"
+fi
+
+# Upgrade existing brew packages
+if ! brew upgrade > /tmp/brew-upgrade-log; then
+  fail "homebrew upgrade"
+fi

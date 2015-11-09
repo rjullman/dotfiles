@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+add_login_item () {
+  local name=$1 path=$2
+  osascript -e "tell application \"System Events\" to make login item at end with properties {path: \"$path\", hidden:true, name: \"$name\"}" > /dev/null
+}
+
+while read -r app || [[ -n "$app" ]]; do
+  if [ -h "$HOME/Applications/${app}.app" ]; then
+    add_login_item "$HOME/Applications/${app}.app" "$app"
+  elif [ -e "/Applications/${app}.app" ]; then
+    add_login_item "/Applications/${app}.app" "$app"
+  else 
+    fail "cannot find ${app}.app"
+  fi
+done < "$DOTFILES_ROOT/osx/autostart_apps"

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# update vundle plugins
+vim +PluginInstall +qall

@@ -1,0 +1,23 @@
+brew-cask
+heroku-toolbelt
+htop-osx
+node
+coreutils
+findutils --with-default-names
+gawk
+gnu-indent --with-default-names
+gnu-sed --with-default-names
+gnu-tar --with-default-names
+gnu-which --with-default-names
+gnutls
+grep --with-default-names
+gzip
+screen
+watch
+wget
+git
+less
+python
+unzip
+macvim --custom-system-icons
+zsh

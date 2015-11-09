@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# update antigen (must run in zsh)
+`which zsh` <<'EOF'
+  source $HOME/.zsh/antigen/antigen.zsh
+  source $HOME/.zshrc
+  antigen selfupdate > /dev/null
+  antigen update > /dev/null
+EOF

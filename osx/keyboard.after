@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+/Applications/Seil.app/Contents/Library/bin/seil set keycode_capslock 53
+

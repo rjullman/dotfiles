@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+run_cmd_with_file_args() {
+  local cmd=$1 list=$2 file=$3
+
+  $list > /tmp/dot-grep-tmp
+
+  while read -r arg || [[ -n "$arg" ]]; do
+    set -- $arg
+    if ! cat /tmp/dot-grep-tmp | grep $1 &> /dev/null; then
+      if ! $cmd $arg; then
+        fail "$cmd $arg"
+      fi
+    fi
+  done < "$DOTFILES_ROOT/${file}"
+}
+
+# Install Homebrew
+if test ! $(which brew)
+then
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  success "homebrew installed"
+fi
+
+# Update brew
+if ! brew update > /tmp/brew-update-log; then
+  fail "homebrew update"
+fi
+
+# Upgrade existing brew packages
+if ! brew upgrade > /tmp/brew-upgrade-log; then
+  fail "homebrew upgrade"
+fi
+
+# Setup taps
+run_cmd_with_file_args 'brew tap' 'brew tap' 'homebrew/taps'
+
+# Install brews
+run_cmd_with_file_args 'brew install' 'brew list' 'homebrew/brews'
+
+# Install brew casks
+run_cmd_with_file_args 'brew cask install' 'brew cask list' 'homebrew/casks'

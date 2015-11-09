@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# makes files link to Dropbox
+if [ -d $HOME/Dropbox -a ! -a $HOME/files ]; then
+  ln -s $HOME/Dropbox $HOME/files
+fi;
+
+# rename osx default Downloadsd to downloads
+if ls $HOME | grep Downloads; then
+  sudo mv $HOME/Downloads $HOME/__downloads
+  sudo mv $HOME/__downloads $HOME/downloads
+fi
