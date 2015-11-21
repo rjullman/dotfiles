@@ -4,6 +4,6 @@
 `which zsh` <<'EOF'
   source $HOME/.zsh/antigen/antigen.zsh
   source $HOME/.zshrc
-  antigen selfupdate > /dev/null
-  antigen update > /dev/null
+  antigen selfupdate &> /tmp/antigen-selfupdate-log
+  antigen update &> /tmp/antigen-update-log
 EOF
