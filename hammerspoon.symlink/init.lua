@@ -52,17 +52,17 @@ end
 
 movement_binding = {"ctrl", "cmd"}
 
--- Movement bindings
+-- Movement bindings, hotkey to window location
 movements = {
-  ["h"] = { x = 0,   y = 0,   w = 1,   h = 1   },
-  ["j"] = { x = 0,   y = 0,   w = 1/2, h = 1   },
-  ["l"] = { x = 1/2, y = 0,   w = 1/2, h = 1   },
-  ["i"] = { x = 0,   y = 0,   w = 1,   h = 1/2 },
-  ["k"] = { x = 0,   y = 1/2, w = 1,   h = 1/2 },
-  ["u"] = { x = 0,   y = 0,   w = 1/2, h = 1/2 },
-  ["o"] = { x = 1/2, y = 0,   w = 1/2, h = 1/2 },
-  ["n"] = { x = 0,   y = 1/2, w = 1/2, h = 1/2 },
-  ["m"] = { x = 1/2, y = 1/2, w = 1/2, h = 1/2 },
+  h = { x = 0,   y = 0,   w = 1,   h = 1   },
+  j = { x = 0,   y = 0,   w = 1/2, h = 1   },
+  l = { x = 1/2, y = 0,   w = 1/2, h = 1   },
+  i = { x = 0,   y = 0,   w = 1,   h = 1/2 },
+  k = { x = 0,   y = 1/2, w = 1,   h = 1/2 },
+  u = { x = 0,   y = 0,   w = 1/2, h = 1/2 },
+  o = { x = 1/2, y = 0,   w = 1/2, h = 1/2 },
+  n = { x = 0,   y = 1/2, w = 1/2, h = 1/2 },
+  m = { x = 1/2, y = 1/2, w = 1/2, h = 1/2 },
 }
 
 function move_focused_win(loc)
