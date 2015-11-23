@@ -54,7 +54,7 @@ movement_binding = {"ctrl", "cmd"}
 
 -- Movement bindings
 movements = {
-  ["f"] = { x = 0,   y = 0,   w = 1,   h = 1   },
+  ["h"] = { x = 0,   y = 0,   w = 1,   h = 1   },
   ["j"] = { x = 0,   y = 0,   w = 1/2, h = 1   },
   ["l"] = { x = 1/2, y = 0,   w = 1/2, h = 1   },
   ["i"] = { x = 0,   y = 0,   w = 1,   h = 1/2 },
