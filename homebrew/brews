@@ -12,7 +12,7 @@ gnu-which --with-default-names
 gnutls
 grep --with-default-names
 gzip
-screen
+tmux
 watch
 wget
 git
