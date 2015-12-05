@@ -21,3 +21,4 @@ python
 unzip
 macvim --custom-system-icons
 zsh
+reattach-to-user-namespace
