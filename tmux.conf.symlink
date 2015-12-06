@@ -3,7 +3,10 @@ unbind C-b
 set -g prefix C-x
 
 # reload tmux config
-bind r source-file ~/.tmux.conf
+unbind r
+bind r \
+  source-file ~/.tmux.conf \;\
+  display 'Reloaded tmux config.'
 
 # mouse mode for scrolling
 setw -g mouse on
