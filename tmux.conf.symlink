@@ -60,6 +60,9 @@ bind ] run "reattach-to-user-namespace pbpaste | tmux load-buffer - && tmux past
 ### Colors (Solarized 256)
 # https://github.com/seebi/tmux-colors-solarized/blob/master/tmuxcolors-256.conf
 
+# enable 256 colors
+set -g default-terminal "screen-256color"
+
 # default statusbar colors
 set-option -g status-bg colour235 #base02
 set-option -g status-fg colour136 #yellow
