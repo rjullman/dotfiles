@@ -9,16 +9,15 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Other plugins
-Plugin 'tpope/vim-fugitive'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'kien/ctrlp.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'bling/vim-airline'
-Plugin 'ervandew/supertab'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'mtscout6/vim-cjsx'
+Plugin 'tpope/vim-fugitive'               " git info
+Plugin 'scrooloose/nerdtree'              " file explorer
+Plugin 'scrooloose/syntastic'             " syntax checker
+Plugin 'kien/ctrlp.vim'                   " fuzzy search
+Plugin 'altercation/vim-colors-solarized' " color theme
+Plugin 'scrooloose/nerdcommenter'         " comments
+Plugin 'bling/vim-airline'                " status line
+Plugin 'ervandew/supertab'                " auto completion
+Plugin 'sheerun/vim-polyglot'             " language packs
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -43,7 +42,7 @@ let g:syntastic_check_on_wq = 0
 let mapleader = "\\"
 nmap <leader>d :NERDTreeToggle<cr>
 
-" set indent to be 4 spaces
+" set indent to be 2 spaces
 set smartindent
 set tabstop=2
 set shiftwidth=2
