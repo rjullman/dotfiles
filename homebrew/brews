@@ -1,5 +1,6 @@
 heroku-toolbelt
 htop-osx
+neovim
 node
 coreutils
 findutils --with-default-names
@@ -18,6 +19,5 @@ git
 less
 python
 unzip
-macvim --custom-system-icons
 zsh
 reattach-to-user-namespace
