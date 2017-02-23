@@ -7,7 +7,6 @@ antigen bundles <<EOBUNDLES
   # Bundles from the default repo (robbyrussell's oh-my-zsh).
   git
   brew
-  brew-cask
   osx
 
   # Syntax highlighting bundle.
