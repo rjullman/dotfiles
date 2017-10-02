@@ -1,0 +1,2 @@
+mkdir -p "$HOME/.config"
+ln -sf "$HOME/.vim" "$HOME/.config/nvim"
