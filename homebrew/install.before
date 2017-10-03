@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-run_cmd_with_file_args() {
-  local cmd=$1 list=$2 file=$3
+run_cmd_with_args() {
+  local cmd=$1 list=$2 args=$3
 
   $list > /tmp/dot-grep-tmp
 
@@ -12,7 +12,7 @@ run_cmd_with_file_args() {
         fail "$cmd $arg"
       fi
     fi
-  done < "$DOTFILES_ROOT/${file}"
+  done < <(echo "$args")
 }
 
 # Install Homebrew
@@ -22,11 +22,57 @@ then
   success "homebrew installed"
 fi
 
+TAPS=$(cat << 'EOF'
+  caskroom/cask
+  homebrew/dupes
+  homebrew/versions
+  neovim/neovim
+EOF)
+
+BREWS=$(cat << 'EOF'
+  coreutils
+  findutils --with-default-names
+  gawk
+  git
+  gnu-indent --with-default-names
+  gnu-sed --with-default-names
+  gnu-tar --with-default-names
+  gnu-which --with-default-names
+  gnutls
+  grep --with-default-names
+  gzip
+  htop-osx
+  less
+  neovim
+  node
+  python
+  reattach-to-user-namespace
+  tmux
+  unzip
+  watch
+  wget
+  zsh
+EOF)
+
+CASKS=$(cat << EOF
+  alfred
+  dropbox
+  flux
+  gimp
+  google-chrome
+  hammerspoon
+  iterm2
+  java
+  seil
+  skype
+  spotify
+EOF)
+
 # Setup taps
-run_cmd_with_file_args 'brew tap' 'brew tap' 'homebrew/taps'
+run_cmd_with_args 'brew tap' 'brew tap' "$TAPS"
 
 # Install brews
-run_cmd_with_file_args 'brew install' 'brew list' 'homebrew/brews'
+run_cmd_with_args 'brew install' 'brew list' "$BREWS"
 
 # Install brew casks
-run_cmd_with_file_args 'brew cask install' 'brew cask list' 'homebrew/casks'
+run_cmd_with_args 'brew cask install' 'brew cask list' "$CASKS"
