@@ -1,29 +1,68 @@
 #!/usr/bin/env bash
 
-run_cmd_with_args() {
-  local cmd=$1 list=$2 args=$3
+# finds things in the given list that are not in the excluded list
+#
+# this will ignore duplicate entries, ignore leading whitspace, and
+# only compare the first word on each line
+diff() {
+  local list=$1 excluded=$2
 
-  $list > /tmp/dot-grep-tmp
+  trimmed_diff="$(comm -23 \
+      <(echo "$list"     | sed 's/^ *//g' | cut -d' ' -f1 | sort | uniq) \
+      <(echo "$excluded" | sed 's/^ *//g' | cut -d' ' -f1 | sort | uniq))"
 
-  while read -r arg || [[ -n "$arg" ]]; do
-    set -- $arg
-    if ! cat /tmp/dot-grep-tmp | grep $1 &> /dev/null; then
-      if ! $cmd $arg; then
-        fail "$cmd $arg"
-      fi
-    fi
-  done < <(echo "$args")
+  while read -r line; do
+    echo "$list" | grep -m 1 "$line"
+  done < <(echo "$trimmed_diff" | sed '/^$/d')
 }
 
-# Install Homebrew
+# runs given command once for each arg in args
+run_cmd() {
+  local cmd=$1 args=$2
+
+  while read -r arg; do
+    if ! $cmd $arg; then
+      fail "$cmd $arg"
+    fi
+  done < <(echo "$args" | sed '/^$/d')
+}
+
+run_cmds() {
+  local install_cmd=$1 uninstall_cmd=$2 list_cmd=$3 args=$4
+
+  list=`$list_cmd`
+
+  # install all expected items not found in list
+  to_install="$(diff "$args" "$list")"
+  run_cmd "$install_cmd" "$to_install"
+
+  # remove all unexpected items found in list
+  to_uninstall="$(diff "$list" "$args")"
+  run_cmd "$uninstall_cmd" "$to_uninstall"
+}
+
+# returns all given brews and their dependencies
+brew_deps() {
+  brews=$1
+  echo "$brews"
+  echo "$brews" | sed 's/^ *//g' | cut -d' ' -f1 | xargs brew deps --union
+}
+
+# install homebrew
 if test ! $(which brew)
 then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   success "homebrew installed"
 fi
 
+# ensure latest homebrew and updated formulae
+brew update > /tmp/dot-brew-update
+
 TAPS=$(cat << 'EOF'
   caskroom/cask
+  caskroom/drivers
+  caskroom/versions
+  homebrew/core
   homebrew/dupes
   homebrew/versions
   neovim/neovim
@@ -34,6 +73,8 @@ BREWS=$(cat << 'EOF'
   findutils --with-default-names
   gawk
   git
+  go
+  gradle
   gnu-indent --with-default-names
   gnu-sed --with-default-names
   gnu-tar --with-default-names
@@ -42,10 +83,13 @@ BREWS=$(cat << 'EOF'
   grep --with-default-names
   gzip
   htop-osx
+  hugo
+  jq
   less
   neovim
   node
   python
+  python3
   reattach-to-user-namespace
   tmux
   unzip
@@ -56,23 +100,34 @@ EOF)
 
 CASKS=$(cat << EOF
   alfred
+  audacity
+  cuda
+  discord
+  docker-beta
   dropbox
   flux
   gimp
   google-chrome
   hammerspoon
+  intellij-idea-ce
   iterm2
   java
+  league-of-legends
+  razer-synapse
+  sage
   seil
   skype
+  sonos
   spotify
+  steam
+  teamviewer
 EOF)
 
-# Setup taps
-run_cmd_with_args 'brew tap' 'brew tap' "$TAPS"
+# setup taps
+run_cmds 'brew tap' 'brew untap' 'brew tap' "$TAPS"
 
-# Install brews
-run_cmd_with_args 'brew install' 'brew list' "$BREWS"
+# install brews
+run_cmds 'brew install' 'brew uninstall' 'brew list' "$(brew_deps "$BREWS")"
 
-# Install brew casks
-run_cmd_with_args 'brew cask install' 'brew cask list' "$CASKS"
+# install casks
+run_cmds 'brew cask install' 'brew cask uninstall' 'brew cask list' "$CASKS"
