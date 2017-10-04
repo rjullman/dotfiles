@@ -100,7 +100,6 @@ EOF)
 
 CASKS=$(cat << EOF
   alfred
-  audacity
   cuda
   discord
   docker-beta
