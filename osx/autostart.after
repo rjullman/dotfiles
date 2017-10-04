@@ -5,12 +5,28 @@ add_login_item () {
   osascript -e "tell application \"System Events\" to make login item at end with properties {name: \"$name\", path: \"$target\", hidden:true}" > /dev/null
 }
 
-while read -r app || [[ -n "$app" ]]; do
-  if [ -h "$HOME/Applications/${app}.app" ]; then
-    add_login_item "$app" "$HOME/Applications/${app}.app"
-  elif [ -e "/Applications/${app}.app" ]; then
-    add_login_item "$app" "/Applications/${app}.app"
-  else 
-    fail "cannot find ${app}.app"
-  fi
-done < "$DOTFILES_ROOT/osx/autostart_apps"
+add_autostarts() {
+  apps=$1
+
+  while read -r app || [[ -n "$app" ]]; do
+    if [ -h "$HOME/Applications/${app}.app" ]; then
+      add_login_item "$app" "$HOME/Applications/${app}.app"
+    elif [ -e "/Applications/${app}.app" ]; then
+      add_login_item "$app" "/Applications/${app}.app"
+    else
+      fail "cannot find ${app}.app"
+    fi
+  done < <(echo "$apps")
+}
+
+AUTOSTART_APPS=$(cat << 'EOF'
+  Flux
+  Hammerspoon
+  Alfred 2
+  Dropbox
+  Google Chrome
+  iTerm
+  Spotify
+EOF)
+
+add_autostarts "$AUTOSTART_APPS"
