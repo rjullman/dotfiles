@@ -115,7 +115,6 @@ CASKS=$(cat << EOF
   league-of-legends
   razer-synapse
   sage
-  seil
   skype
   sonos
   spotify
