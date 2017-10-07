@@ -7,7 +7,6 @@ antigen bundles <<EOBUNDLES
   # Bundles from the default repo (robbyrussell's oh-my-zsh).
   git
   brew
-  osx
 
   # Syntax highlighting bundle.
   zsh-users/zsh-syntax-highlighting
