@@ -69,11 +69,12 @@ TAPS=$(cat << 'EOF'
 EOF)
 
 BREWS=$(cat << 'EOF'
+  awscli
   coreutils
+  ffmpeg
   findutils --with-default-names
   gawk
   git
-  go
   gradle
   gnu-indent --with-default-names
   gnu-sed --with-default-names
@@ -81,9 +82,9 @@ BREWS=$(cat << 'EOF'
   gnu-which --with-default-names
   gnutls
   grep --with-default-names
+  groovy
   gzip
-  htop-osx
-  hugo
+  htop
   jq
   less
   neovim
@@ -99,33 +100,60 @@ BREWS=$(cat << 'EOF'
 EOF)
 
 CASKS=$(cat << EOF
+  1password
   alfred
-  cuda
   discord
-  docker-beta
   dropbox
   flux
   gimp
   google-chrome
   hammerspoon
-  intellij-idea-ce
   iterm2
   java
   league-of-legends
+  spotify
+  steam
+EOF)
+
+hostname=$(hostname)
+if [ "$hostname" = "sebastian" ]; then
+
+BREWS=$(cat << 'EOF'
+  $BREWS
+  go
+  hugo
+EOF)
+
+CASKS=$(cat << EOF
+  $CASKS
+  cuda
+  intellij-idea-ce
   razer-synapse
   sage
   skype
   sonos
-  spotify
-  steam
   teamviewer
 EOF)
+
+elif [ "$hostname" = "bullman-work" ]; then
+
+CASKS=$(cat << EOF
+  $CASKS
+  docker
+  intellij-idea
+  java6
+  java7
+  quip
+  slack
+EOF)
+
+fi
 
 # setup taps
 run_cmds 'brew tap' 'brew untap' 'brew tap' "$TAPS"
 
 # install brews
-run_cmds 'brew install' 'brew uninstall' 'brew list' "$(brew_deps "$BREWS")"
+run_cmds 'brew install' 'brew uninstall --force --ignore-dependencies' 'brew list' "$(brew_deps "$BREWS")"
 
 # install casks
 run_cmds 'brew cask install' 'brew cask uninstall' 'brew cask list' "$CASKS"
