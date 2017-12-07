@@ -22,7 +22,7 @@ add_autostarts() {
 AUTOSTART_APPS=$(cat << 'EOF'
   Flux
   Hammerspoon
-  Alfred 2
+  Alfred 3
   Dropbox
   Google Chrome
   iTerm
