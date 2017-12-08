@@ -100,9 +100,8 @@ BREWS=$(cat << 'EOF'
 EOF)
 
 CASKS=$(cat << EOF
-  1password
   alfred
-  discord
+  docker
   dropbox
   flux
   gimp
@@ -110,41 +109,25 @@ CASKS=$(cat << EOF
   hammerspoon
   iterm2
   java
-  league-of-legends
   spotify
-  steam
 EOF)
 
 hostname=$(hostname)
-if [ "$hostname" = "sebastian" ]; then
+if [ "$hostname" = "flounder.local" ]; then
 
-BREWS=$(cat << 'EOF'
+BREWS=$(cat << EOF
   $BREWS
-  go
   hugo
+  juju
 EOF)
 
 CASKS=$(cat << EOF
   $CASKS
-  cuda
-  intellij-idea-ce
-  razer-synapse
+  discord
+  league-of-legends
   sage
-  skype
   sonos
-  teamviewer
-EOF)
-
-elif [ "$hostname" = "bullman-work" ]; then
-
-CASKS=$(cat << EOF
-  $CASKS
-  docker
-  intellij-idea
-  java6
-  java7
-  quip
-  slack
+  steam
 EOF)
 
 fi
