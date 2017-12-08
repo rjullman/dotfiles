@@ -21,4 +21,5 @@ Read https://github.com/rjullman/dotfiles/blob/master/dot to see how things work
 
 - To use Hammerspoon (and all the associated window resizing and focus grabbing hotkeys) you must give Hammerspoon OSX Accessibility access (Hammerspoon → Preferences → Enable Accessibility).
 - Set the Alfred 3 hotkey (Alfred → Preferences → Alfred Hotkey). I use ctrl-shift-alt-space.
-- Create an iTerm2 dedicated hotkey window (iTerm2 → Keys → Create Dedicated Hotkey Window).  I set the hotkey to ctrl-shift-space.
+- Create an iTerm2 dedicated hotkey window (iTerm2 → Keys → Create Dedicated Hotkey Window).  I set the hotkey to ctrl-shift-space.
+- Remap 'Caps Lock' to 'Escape' (System Preferences → Keyboard → Modifier Keys -> Caps Lock Key).
