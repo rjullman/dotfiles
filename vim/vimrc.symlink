@@ -11,7 +11,7 @@ Plugin 'gmarik/Vundle.vim'
 " Other plugins
 Plugin 'tpope/vim-fugitive'               " git info
 Plugin 'scrooloose/nerdtree'              " file explorer
-Plugin 'scrooloose/syntastic'             " syntax checker
+Plugin 'w0rp/ale'                         " linter
 Plugin 'kien/ctrlp.vim'                   " fuzzy search
 Plugin 'altercation/vim-colors-solarized' " color theme
 Plugin 'scrooloose/nerdcommenter'         " comments
@@ -29,15 +29,12 @@ set background=dark
 let g:solarized_termtrans = 1
 silent! colorscheme solarized
 
-" syntastic plugin settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" linter settings
+let g:ale_fixers = {
+\   'python': ['autopep8', 'isort'],
+\}
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
 
 " nerdtree plugin settings
 let mapleader = "\\"
