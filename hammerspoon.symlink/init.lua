@@ -9,14 +9,12 @@ focus_binding = {"ctrl", "shift"}
 
 -- Windows with letter bindings
 apps = {
- ["MacVim"] = "x",
  ["Google Chrome"] = "c",
  ["Spotify"] = "s",
  ["iTerm2"] = "z",
  ["Slack"] = "p",
  ["Preview"] = "a",
- ["Microsoft Outlook"] = "o",
- ["IntelliJ IDEA"] = "i",
+ ["zoom.us"] = "o",
 }
 
 function focus_app(name)
