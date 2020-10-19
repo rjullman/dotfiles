@@ -117,15 +117,17 @@ if [ "$hostname" = "flounder.local" ]; then
 
 BREWS=$(cat << EOF
   $BREWS
-  hugo
-  juju
+  kubectrl
 EOF)
 
 CASKS=$(cat << EOF
   $CASKS
+  caffeine
   discord
+  google-cloud-sdk
   league-of-legends
   sage
+  slack
   sonos
   steam
 EOF)
