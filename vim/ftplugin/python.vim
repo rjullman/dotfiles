@@ -1,2 +1,2 @@
-set textwidth=79
+set textwidth=88
 set colorcolumn=+1
