@@ -1,0 +1,60 @@
+#!/usr/bin/env python
+
+import sys
+import subprocess
+
+# Get all packages we need.
+package_file = sys.argv[1]
+with open(package_file, "r") as handle:
+    lines = list(handle)
+packages = [line.split(" ")[0].strip() for line in lines
+            if not line.startswith("#") and line.strip()]
+
+
+def pkg_names(packages):
+    packages = [pkg.split("/")[-1] for pkg in packages]
+    return set(packages)
+
+
+def cmd(command):
+    return subprocess.check_output(command, shell=True)
+
+try:
+    pkgs = " ".join(packages)
+    command = "brew deps --union %s"
+    dependencies = set(cmd(command % pkgs).split())
+    dependencies = pkg_names(dependencies.union(packages))
+except:
+    sys.exit(1)
+
+installed = set(cmd("brew list").split())
+
+unnecessary = installed - dependencies
+missing = dependencies - installed
+
+if missing:
+    print 'brew install %s' % " ".join(sorted(missing))
+if unnecessary:
+    print 'brew remove %s' % " ".join(sorted(unnecessary))
+print 'brew cleanup --force -s'
+
+# Next, deal with casks.
+cask_file = sys.argv[2]
+with open(cask_file, "r") as handle:
+    lines = list(handle)
+casks = set([line.split(" ")[0].strip() for line in lines
+             if not line.startswith("#") and line.strip()])
+
+installed_casks = set(cmd("brew list --cask").split())
+
+print
+
+# Install missing casks
+for cask in casks - installed_casks:
+    print 'brew cask install %s' % cask
+
+# Remove unnecessary casks
+for cask in installed_casks - casks:
+    print 'brew cask zap %s' % cask
+
+print 'brew cask cleanup'

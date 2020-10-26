@@ -1,4 +1,0 @@
-mkdir -p "$HOME/.config"
-ln -sf "$DOTFILES/vim/ftplugin" "$HOME/.vim/ftplugin"
-ln -sf "$HOME/.vim" "$HOME/.config/nvim"
-ln -sf "$HOME/.vimrc" "$HOME/.config/nvim/init.vim"
