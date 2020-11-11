@@ -8,7 +8,7 @@ This has significant pieces from https://github.com/gibiansky/dotfiles edited to
 ```
 # Clone this repo.
 mkdir -p $HOME/code
-git clone http://www.github.com/gibiansky/dotfiles $HOME/code/dotfiles
+git clone http://www.github.com/rjullman/dotfiles $HOME/code/dotfiles
 
 # Configure dot files.
 $HOME/code/dotfiles/init.sh
