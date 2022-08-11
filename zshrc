@@ -80,6 +80,9 @@ setopt histnostore
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:."
 
+# Add homebrew to path.
+export PATH=/opt/homebrew/bin:${PATH}
+
 # Add GNU utilities to path and man pages.
 if brew --prefix &>/dev/null; then
     for package in coreutils findutils gnu-indent gnu-sed gnu-tar gnu-which grep; do

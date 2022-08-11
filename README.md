@@ -21,10 +21,10 @@ $HOME/code/dotfiles/init.sh
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Open taps.
-homebrew/cask
-homebrew/cask-drivers
-homebrew/cask-versions
-homebrew/core
+brew tap homebrew/cask
+brew tap homebrew/cask-drivers
+brew tap homebrew/cask-versions
+brew tap homebrew/core
 
 # Run all commands for brew provisioning.
 brew-provision

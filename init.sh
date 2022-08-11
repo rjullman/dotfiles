@@ -15,17 +15,18 @@ done
 # Set up the ~/.vimrc to point to my configuration.
 echo 'source ~/.vim/configuration.vim' > ~/.vimrc
 echo 'source ~/.vim/configuration.vim' > ~/.nvimrc
+mkdir -p ~/.config/nvim
 echo 'source ~/.vim/configuration.vim' > ~/.config/nvim/init.vim
 
 # Install Vundle.
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Install Oh-My-Zsh
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh
 
 # Install Oh-My-Zsh custom plugins.
-git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-git clone git://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
 # Install all Vundle plugins.
 vim +PluginInstall +qall

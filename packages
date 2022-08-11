@@ -28,5 +28,4 @@ zsh
 
 # Programming languages.
 node
-python@2
 python@3.8
