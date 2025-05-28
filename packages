@@ -1,5 +1,4 @@
 # Developer tools.
-awscli
 neovim
 
 # System utilities.
@@ -25,7 +24,3 @@ unzip
 watch
 wget
 zsh
-
-# Programming languages.
-node
-python@3.8

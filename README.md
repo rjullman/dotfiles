@@ -18,15 +18,11 @@ $HOME/code/dotfiles/init.sh
 
 ```
 # Download homebrew.
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Open taps.
-brew tap homebrew/cask
-brew tap homebrew/cask-drivers
-brew tap homebrew/cask-versions
-brew tap homebrew/core
-
-# Run all commands for brew provisioning.
+# Run to see all the brew commands need to:
+#   1. install brew packages wanted for development, and
+#   2. (optional) purge brew packages that were not epxected on the system.
 brew-provision
 ```
 

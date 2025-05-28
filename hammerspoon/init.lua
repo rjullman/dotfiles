@@ -15,6 +15,7 @@ apps = {
  ["Slack"] = "p",
  ["Preview"] = "a",
  ["zoom.us"] = "o",
+ ["Windsurf"] = "l",
 }
 
 function focus_app(name)

@@ -114,3 +114,8 @@ fi
 alias brew-provision='$HOME/code/dotfiles/utils/brew-packages $HOME/code/dotfiles/packages $HOME/code/dotfiles/casks'
 
 ### }
+
+# Support per-system specific config.
+if [ -f ~/.localrc ]; then
+    source ~/.localrc
+fi

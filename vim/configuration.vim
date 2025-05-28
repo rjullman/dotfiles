@@ -13,7 +13,7 @@ Plugin 'tpope/vim-fugitive'               " git info
 Plugin 'scrooloose/nerdtree'              " file explorer
 Plugin 'w0rp/ale'                         " linter
 Plugin 'kien/ctrlp.vim'                   " fuzzy search
-Plugin 'altercation/vim-colors-solarized' " color theme
+Plugin 'lifepillar/vim-solarized8'        " color theme
 Plugin 'scrooloose/nerdcommenter'         " comments
 Plugin 'bling/vim-airline'                " status line
 Plugin 'ervandew/supertab'                " auto completion
@@ -28,7 +28,7 @@ filetype plugin indent on    " required
 syntax enable
 set background=dark
 let g:solarized_termtrans = 1
-silent! colorscheme solarized
+silent! colorscheme solarized8
 
 " linter settings
 let g:ale_fixers = {
